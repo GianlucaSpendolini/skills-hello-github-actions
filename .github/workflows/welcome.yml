@@ -1,6 +1,19 @@
+# A job is a set of steps in a workflow that execute on the same runner (a runner is a server that runs your workflows when triggered). 
+# Workflows have jobs, and jobs have steps. 
+# Steps are executed in order and are dependent on each other
+
+# gives your workflow a name. This name will appear in the Actions tab of your repository
 name: Post welcome comment
 on:
   pull_request:
+    # indicates that your workflow will execute whenever someone opens a pull request in your repository
     types: [opened]
+# assigns the workflow permissions to operate on the repository
 permissions:
+  # gives the workflow permission to write to pull requests. This is needed to create the welcome comment
   pull-requests: write
+jobs:
+  build:
+    name: Post welcome comment
+    # fastest and cheapest job runner available
+    runs-on: ubuntu-latest
